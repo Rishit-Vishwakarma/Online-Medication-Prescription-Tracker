@@ -1,0 +1,149 @@
+/* Professional Admin Dashboard UI */
+:root {
+  --sidebar-bg: #0f172a; /* Deep Navy - Same as Patient */
+  --sidebar-text: #94a3b8;
+  --sidebar-text-hover: #ffffff;
+  --primary-accent: #0ea5e9;
+  --bg-light: #f8fafc;
+  --text-main: #1e293b;
+  --sidebar-width: 260px;
+  --active-item-bg: rgba(255, 255, 255, 0.2);
+  --active-item-text: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-main);
+}
+
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: white;
+  letter-spacing: 0.5px;
+}
+
+.profile-section {
+  text-align: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.avatar {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  color: white;
+}
+
+.profile-section p {
+  color: var(--sidebar-text);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+}
+
+.menu button {
+  background: none;
+  border: none;
+  color: var(--sidebar-text);
+  text-align: left;
+  padding: 0.875rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.menu button:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--sidebar-text-hover);
+}
+
+.menu button.active {
+  background-color: var(--active-item-bg);
+  color: white;
+  font-weight: 700;
+}
+
+.logout-btn {
+  margin-top: auto;
+  background-color: transparent;
+  color: #ef4444;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+  width: 100%;
+}
+
+.logout-btn:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  margin-left: var(--sidebar-width);
+  padding: 2.5rem;
+  overflow-y: auto;
+  background-color: var(--bg-light);
+}

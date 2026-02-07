@@ -1,0 +1,111 @@
+.doctor-info-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.doctor-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.doctor-header img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #e0f2fe;
+}
+
+.doctor-title h3 {
+  font-size: 1.75rem;
+  color: #0f172a;
+  margin: 0;
+}
+
+.doctor-title .spec {
+  color: #0284c7;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0.25rem 0;
+}
+
+.doctor-title .deg {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.doctor-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.detail-item label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.detail-item p {
+  font-size: 1.1rem;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.detail-item.full {
+  grid-column: span 2;
+}
+
+.degree-section {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.degree-section label {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.degree-img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.error-card {
+  background-color: #fef2f2;
+  color: #ef4444;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid #fee2e2;
+  margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .doctor-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .doctor-details-grid {
+    grid-template-columns: 1fr;
+  }
+}

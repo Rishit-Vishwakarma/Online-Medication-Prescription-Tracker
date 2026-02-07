@@ -1,0 +1,120 @@
+.manage-patients {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* ===== HEADER ===== */
+.manage-patients .header {
+  margin-bottom: 20px;
+}
+
+.manage-patients h2 {
+  color: #0b7c93;
+  margin-bottom: 6px;
+}
+
+.manage-patients p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ===== CONTROLS ===== */
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.controls input,
+.controls select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #cfe3ea;
+  outline: none;
+  font-size: 14px;
+}
+
+/* ===== TABLE ===== */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #eef2f7;
+  font-size: 14px;
+  text-align: left;
+}
+
+th {
+  background: #f1f9fb;
+  color: #0369a1;
+  font-weight: 600;
+}
+
+/* ===== STATUS ===== */
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status.blocked {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ===== ACTION BUTTONS ===== */
+button {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button.block {
+  background: #ef4444;
+  color: #fff;
+}
+
+button.activate {
+  background: #22c55e;
+  color: #fff;
+}
+
+/* ===== EMPTY ===== */
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: #9ca3af;
+}
+
+/* ===== LOADING ===== */
+.loading {
+  padding: 30px;
+  text-align: center;
+  font-weight: 600;
+  color: #0b7c93;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+  }
+}

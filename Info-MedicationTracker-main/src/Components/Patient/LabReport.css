@@ -1,0 +1,96 @@
+.subtitle {
+  color: #6b7d86;
+  margin-bottom: 26px;
+}
+
+/* ================= REPORT CARD ================= */
+.report-card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 26px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  margin-bottom: 28px;
+}
+
+.report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.report-header span {
+  font-size: 14px;
+  color: #6b7d86;
+}
+
+.report-status {
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.report-status.normal {
+  background: #e8f9f0;
+  color: #12834e;
+}
+
+.report-status.alert {
+  background: #fff4e5;
+  color: #b87800;
+}
+
+/* ================= DETAILS ================= */
+.report-details {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 18px;
+  margin: 20px 0;
+}
+
+.report-details label {
+  font-size: 13px;
+  color: #6b7d86;
+}
+
+.report-details p {
+  font-weight: 600;
+}
+
+.verified {
+  color: #12834e;
+}
+
+/* ================= ACTIONS ================= */
+.report-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.view-btn,
+.download-btn {
+  background: linear-gradient(135deg,#0b7c93,#1fb6c9);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+/* ================= UPLOAD ================= */
+.upload-box {
+  background: #f7fcff;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px dashed #1fb6c9;
+}
+
+.upload-box input {
+  margin-top: 12px;
+}
+
+.hint {
+  font-size: 13px;
+  color: #6b7d86;
+  margin-top: 8px;
+}

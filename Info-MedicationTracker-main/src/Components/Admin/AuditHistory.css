@@ -1,0 +1,23 @@
+.audit-card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.audit-card h3 {
+  color: #0b7c93;
+  margin-bottom: 16px;
+}
+
+.audit-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.audit-card th,
+.audit-card td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #eef2f5;
+  font-size: 14px;
+}

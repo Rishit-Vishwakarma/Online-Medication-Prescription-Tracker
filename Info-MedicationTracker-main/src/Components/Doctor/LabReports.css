@@ -1,0 +1,93 @@
+.lab-reports-page {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* HEADER */
+.lab-header {
+  margin-bottom: 24px;
+}
+
+.lab-header h2 {
+  color: #0b7c93;
+  margin-bottom: 6px;
+}
+
+.lab-header p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* TABLE */
+.lab-table-wrapper {
+  overflow-x: auto;
+}
+
+.lab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.lab-table th,
+.lab-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+.lab-table th {
+  background: #f0f9ff;
+  color: #0369a1;
+  font-weight: 600;
+}
+
+/* STATUS */
+.status {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.status.completed {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status.pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+/* BUTTON */
+.view-btn {
+  background: #0b7c93;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.view-btn:hover {
+  background: #095f72;
+}
+
+/* LOADING */
+.loading {
+  padding: 30px;
+  font-size: 15px;
+  color: #666;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .lab-header h2 {
+    font-size: 20px;
+  }
+}

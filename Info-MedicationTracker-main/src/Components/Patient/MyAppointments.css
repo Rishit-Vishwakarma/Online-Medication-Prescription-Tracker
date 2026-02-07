@@ -1,0 +1,104 @@
+.subtitle {
+  margin-top: 6px;
+  margin-bottom: 24px;
+  color: #6b7d86;
+  font-size: 15px;
+}
+
+/* ================= TABLE CARD ================= */
+.table-card {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.08);
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.appointments-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* ================= HEADER ================= */
+.appointments-table thead th {
+  text-align: left;
+  padding: 14px;
+  background: #f0f8fb;
+  color: #0b7c93;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 1px solid #d6ebf3;
+}
+
+/* ================= BODY ================= */
+.appointments-table tbody td {
+  padding: 16px 14px;
+  color: #345864;
+  font-size: 14px;
+  border-bottom: 1px solid #edf2f6;
+}
+
+/* ================= DOCTOR CELL ================= */
+.doctor-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  font-size: 22px;
+}
+
+/* ================= STATUS ================= */
+.status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.status.approved {
+  background: #e7f9f0;
+  color: #118a57;
+}
+
+.status.pending {
+  background: #fff6e5;
+  color: #b77600;
+}
+
+.status.cancelled {
+  background: #fdecec;
+  color: #c62828;
+}
+
+/* ================= ACTION BUTTONS ================= */
+.view-btn {
+  background: #0b7c93;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.view-btn:hover {
+  background: #095f72;
+}
+
+.cancel-btn {
+  background: transparent;
+  border: 1px solid #ff5252;
+  color: #ff5252;
+  padding: 6px 12px;
+  border-radius: 14px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #ffebee;
+}

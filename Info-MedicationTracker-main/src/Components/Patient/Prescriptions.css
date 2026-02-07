@@ -1,0 +1,115 @@
+.subtitle {
+  margin-bottom: 26px;
+  color: #6b7d86;
+  font-size: 15px;
+}
+
+/* ================= CARD ================= */
+.prescription-card {
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 18px 42px rgba(0,0,0,0.08);
+  max-width: 1000px;
+}
+
+/* ================= HEADER ================= */
+.rx-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px dashed #dceaf1;
+  padding-bottom: 18px;
+}
+
+.rx-header h3 {
+  margin: 0;
+  color: #133c4b;
+}
+
+.rx-header span {
+  font-size: 14px;
+  color: #6b7d86;
+}
+
+.rx-verified {
+  background: #e8f9f0;
+  color: #12834e;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ================= INFO ================= */
+.rx-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+  font-size: 14px;
+}
+
+/* ================= MEDICINE TABLE ================= */
+.medicine-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.medicine-table th {
+  text-align: left;
+  padding: 12px;
+  background: #f0f8fb;
+  color: #0b7c93;
+  font-size: 14px;
+}
+
+.medicine-table td {
+  padding: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #eef2f6;
+}
+
+/* ================= NOTES ================= */
+.rx-note {
+  background: #f8fcfd;
+  padding: 16px;
+  border-radius: 14px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* ================= ACTIONS ================= */
+.rx-actions {
+  display: flex;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.download-btn,
+.reminder-btn {
+  border: none;
+  padding: 12px 22px;
+  border-radius: 14px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.download-btn {
+  background: #0b7c93;
+  color: white;
+}
+
+.reminder-btn {
+  background: #fff4e5;
+  color: #b87800;
+}
+
+.download-btn:hover {
+  background: #095f72;
+}
+
+.reminder-btn:hover {
+  background: #ffe4b3;
+}

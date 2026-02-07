@@ -1,0 +1,34 @@
+.analytics-card {
+  background: #fff;
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+.analytics-card h3 {
+  color: #0b7c93;
+  margin-bottom: 18px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 18px;
+}
+
+.stat-box {
+  background: #f0f9fb;
+  padding: 20px;
+  border-radius: 14px;
+  text-align: center;
+}
+
+.stat-box h2 {
+  color: #0b7c93;
+  font-size: 28px;
+}
+
+.stat-box span {
+  color: #555;
+  font-size: 14px;
+}

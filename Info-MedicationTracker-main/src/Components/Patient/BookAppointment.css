@@ -1,0 +1,168 @@
+.patient-page {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 24px;
+  max-width: 1000px;
+  margin: auto;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+}
+
+h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #143c4b;
+}
+
+.subtitle {
+  margin: 6px 0 28px;
+  color: #6b7d86;
+}
+
+.section-title {
+  margin: 35px 0 18px;
+  font-size: 20px;
+  color: #0b7c93;
+}
+
+/* ================= DOCTOR CARDS ================= */
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+}
+
+.doctor-card {
+  background: #f2fafc;
+  border: 2px solid transparent;
+  padding: 22px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.doctor-card:hover {
+  transform: translateY(-6px);
+}
+
+.doctor-card.active {
+  border-color: #0b7c93;
+  box-shadow: 0 16px 32px rgba(11,124,147,0.3);
+}
+
+.doctor-avatar {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+.doctor-card h4 {
+  margin: 6px 0;
+  color: #133c4b;
+}
+
+.doctor-card p {
+  color: #627b86;
+  font-size: 14px;
+}
+
+.fee {
+  margin-top: 10px;
+  font-weight: 700;
+  color: #0b7c93;
+}
+
+/* ================= SLOT ================= */
+.slot-box {
+  background: #f8fcfd;
+  border: 1px solid #dbeff6;
+  padding: 26px;
+  border-radius: 18px;
+}
+
+.slot-box label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #506a75;
+}
+
+.slot-box input {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #cfe6ee;
+  margin-bottom: 20px;
+}
+
+.slot-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.slot {
+  border: 1px solid #0b7c93;
+  background: transparent;
+  padding: 10px 18px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #0b7c93;
+}
+
+.slot.selected {
+  background: #0b7c93;
+  color: #fff;
+}
+
+/* ================= PAYMENT ================= */
+.payment-box {
+  background: #fff6eb;
+  border: 1px solid #ffd9b3;
+  padding: 26px;
+  border-radius: 18px;
+  max-width: 420px;
+}
+
+.pay-btn {
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+  border: none;
+  padding: 12px 26px;
+  border-radius: 14px;
+  font-weight: 700;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.success {
+  color: green;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* ================= CONFIRM ================= */
+.confirm-box {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.confirm-btn {
+  background: linear-gradient(#0284c7);
+  color: white;
+  border: none;
+  padding: 16px 40px;
+  font-size: 17px;
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 15px 30px rgba(11,124,147,0.4);
+}
+
+.confirm-btn:hover {
+  transform: scale(1.04);
+}
+
+.info {
+  margin-top: 12px;
+  color: #6b7c86;
+  font-size: 14px;
+}

@@ -1,0 +1,95 @@
+.contact-page {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.contact-header h2 {
+  color: #0b7c93;
+  margin-bottom: 6px;
+}
+
+.contact-header p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.contact-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  background: #f7fbfc;
+  padding: 28px;
+  border-radius: 20px;
+}
+
+h3 {
+  color: #0b7c93;
+}
+
+.doctor-name {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.info {
+  margin-bottom: 16px;
+}
+
+.info span {
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.info p {
+  font-size: 15px;
+  color: #111;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #cfe3ea;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 80px;
+  resize: none;
+}
+
+.emergency span {
+  color: #dc2626;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.actions button {
+  background: #0b7c93;
+  color: white;
+  padding: 10px 22px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.actions button.secondary {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+@media (max-width: 900px) {
+  .contact-card {
+    grid-template-columns: 1fr;
+  }
+}
