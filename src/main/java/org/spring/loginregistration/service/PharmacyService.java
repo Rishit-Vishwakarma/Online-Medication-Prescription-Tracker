@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +32,7 @@ public class PharmacyService {
                         name -> name,
                         name -> medicineRepository.findByName(name)
                                 .map(Medicine::getPrice)
-                                .orElse(10.0) // Default price if not in DB
+                                .orElse(150.0) // Default price in Rupees
                 ));
     }
 
@@ -44,6 +45,25 @@ public class PharmacyService {
         order.setTotalAmount(total);
         order.setStatus("PENDING");
         order.setOrderDate(LocalDateTime.now());
+        
+        int hours = new Random().nextInt(3) + 2;
+        order.setEstimatedTime(hours + "-" + (hours + 1) + " Hours");
+        
+        return orderRepository.save(order);
+    }
+
+    public List<PharmacyOrder> getMyOrders(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow();
+        return orderRepository.findByUserOrderByIdDesc(user); // Latest first
+    }
+
+    public List<PharmacyOrder> getAllOrders() {
+        return orderRepository.findAllByOrderByIdDesc(); // Latest first
+    }
+
+    public PharmacyOrder updateOrderStatus(Long orderId, String status) {
+        PharmacyOrder order = orderRepository.findById(orderId).orElseThrow();
+        order.setStatus(status);
         return orderRepository.save(order);
     }
 }

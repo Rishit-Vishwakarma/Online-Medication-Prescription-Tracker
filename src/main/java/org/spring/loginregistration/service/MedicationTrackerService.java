@@ -30,10 +30,8 @@ public class MedicationTrackerService {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
         LocalDate today = LocalDate.now();
 
-        // 1. Get existing tracker entries for today
         List<MedicationTracker> trackers = trackerRepository.findByUserAndDate(user, today);
 
-        // 2. If empty, populate from latest prescription
         if (trackers.isEmpty()) {
             Optional<Prescription> prescriptionOpt = prescriptionRepository.findTopByUserOrderByIdDesc(user);
             if (prescriptionOpt.isPresent()) {

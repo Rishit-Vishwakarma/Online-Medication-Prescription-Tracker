@@ -1,13 +1,12 @@
 package org.spring.loginregistration.controller;
 
+import org.spring.loginregistration.dto.PrescriptionRequest;
 import org.spring.loginregistration.model.Prescription;
 import org.spring.loginregistration.service.PrescriptionService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -23,14 +22,23 @@ public class PrescriptionController {
     @PostMapping("/write")
     public ResponseEntity<Prescription> writePrescription(
             Authentication authentication,
-            @RequestParam Long patientId,
-            @RequestParam List<String> medicines,
-            @RequestParam String diagnoses,
-            @RequestParam(required = false) String note,
-            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate nextDate) {
+            @RequestBody PrescriptionRequest request) {
         
         Long doctorId = (Long) authentication.getPrincipal();
-        return ResponseEntity.ok(prescriptionService.savePrescription(doctorId, patientId, medicines, diagnoses, note, nextDate));
+        return ResponseEntity.ok(prescriptionService.savePrescription(
+                doctorId, 
+                request.getUserId(), 
+                request.getMedicines(), 
+                request.getDiagnosis(), 
+                request.getNote(), 
+                request.getNextAppointmentDate()
+        ));
+    }
+
+    @GetMapping("/my")
+    public ResponseEntity<List<Prescription>> getMyPrescriptions(Authentication authentication) {
+        Long userId = (Long) authentication.getPrincipal();
+        return ResponseEntity.ok(prescriptionService.getPrescriptionsForPatient(userId));
     }
 
     @GetMapping("/patient/{patientId}")

@@ -6,5 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PharmacyOrderRepository extends JpaRepository<PharmacyOrder, Long> {
-    List<PharmacyOrder> findByUser(User user);
+    // Sort by ID Descending to get latest first
+    List<PharmacyOrder> findByUserOrderByIdDesc(User user);
+    List<PharmacyOrder> findAllByOrderByIdDesc();
 }

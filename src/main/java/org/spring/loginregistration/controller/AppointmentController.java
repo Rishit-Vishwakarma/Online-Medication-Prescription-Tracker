@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/appointments")
@@ -24,13 +25,14 @@ public class AppointmentController {
     @PostMapping("/book")
     public ResponseEntity<Appointment> book(
             Authentication authentication,
-            @RequestParam Long doctorId,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) LocalTime time,
-            @RequestParam String reason) {
+            @RequestBody Map<String, String> request) {
         
         Long userId = (Long) authentication.getPrincipal();
-        return ResponseEntity.ok(appointmentService.bookAppointment(userId, doctorId, date, time, reason));
+        LocalDate date = LocalDate.parse(request.get("date"));
+        LocalTime time = LocalTime.parse(request.get("time"));
+        String reason = request.get("reason");
+
+        return ResponseEntity.ok(appointmentService.bookAppointment(userId, date, time, reason));
     }
 
     @GetMapping("/my-patient")
@@ -46,7 +48,8 @@ public class AppointmentController {
     }
 
     @PutMapping("/{id}/status")
-    public ResponseEntity<Appointment> updateStatus(@PathVariable Long id, @RequestParam String status) {
+    public ResponseEntity<Appointment> updateStatus(@PathVariable Long id, @RequestBody Map<String, String> request) {
+        String status = request.get("status");
         return ResponseEntity.ok(appointmentService.updateStatus(id, status));
     }
 }

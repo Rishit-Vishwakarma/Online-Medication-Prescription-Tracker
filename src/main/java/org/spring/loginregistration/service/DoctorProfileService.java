@@ -1,66 +1,56 @@
 package org.spring.loginregistration.service;
 
-import org.spring.loginregistration.dto.DoctorProfileResponse;
+import org.spring.loginregistration.model.Doctor;
 import org.spring.loginregistration.model.DoctorProfile;
-import org.spring.loginregistration.model.Prescription;
-import org.spring.loginregistration.model.User;
 import org.spring.loginregistration.repository.DoctorProfileRepository;
-import org.spring.loginregistration.repository.PrescriptionRepository;
-import org.spring.loginregistration.repository.UserRepository;
+import org.spring.loginregistration.repository.DoctorRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class DoctorProfileService {
-    private final UserRepository userRepository;
     private final DoctorProfileRepository doctorProfileRepository;
-    private final PrescriptionRepository prescriptionRepository;
+    private final DoctorRepository doctorRepository;
 
-    public DoctorProfileService(DoctorProfileRepository doctorProfileRepository, PrescriptionRepository prescriptionRepository, UserRepository userRepository){
+    public DoctorProfileService(DoctorProfileRepository doctorProfileRepository, DoctorRepository doctorRepository){
         this.doctorProfileRepository = doctorProfileRepository;
-        this.prescriptionRepository = prescriptionRepository;
-        this.userRepository = userRepository;
+        this.doctorRepository = doctorRepository;
     }
 
-    public void setDoctorInfo(Long doctorId, String degree, String specialization, String phoneNumber){
+    public DoctorProfile saveOrUpdateProfile(Long doctorId, DoctorProfile newProfile){
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor not found"));
 
-        DoctorProfile doctorProfile = doctorProfileRepository.findById(doctorId)
+        DoctorProfile existingProfile = doctorProfileRepository.findById(doctorId)
                 .orElse(new DoctorProfile());
 
-        doctorProfile.setId(doctorId);
-        doctorProfile.setDegree(degree);
-        doctorProfile.setSpecialization(specialization);
-        doctorProfile.setPhoneNumber(phoneNumber);
+        existingProfile.setId(doctorId);
+        existingProfile.setDoctor(doctor);
+        existingProfile.setFullName(newProfile.getFullName());
+        existingProfile.setMobileNumber(newProfile.getMobileNumber());
+        existingProfile.setDegreeName(newProfile.getDegreeName());
+        existingProfile.setSpecialization(newProfile.getSpecialization());
+        existingProfile.setExperienceYears(newProfile.getExperienceYears());
+        existingProfile.setClinicAddress(newProfile.getClinicAddress());
+        existingProfile.setBio(newProfile.getBio());
+        existingProfile.setProfilePhotoUrl(newProfile.getProfilePhotoUrl());
+        existingProfile.setDegreePhotoUrl(newProfile.getDegreePhotoUrl());
 
-        doctorProfileRepository.save(doctorProfile);
+        return doctorProfileRepository.save(existingProfile);
     }
 
-    public DoctorProfileResponse getDoctorInfo(Long doctorId){
-        DoctorProfile doctorProfile = doctorProfileRepository.findById(doctorId)
-                .orElseThrow(() -> new RuntimeException("No Doctor Profile found."));
-
-        DoctorProfileResponse response = new DoctorProfileResponse();
-        response.setDegree(doctorProfile.getDegree());
-        response.setSpecialization(doctorProfile.getSpecialization());
-        response.setPhoneNumber(doctorProfile.getPhoneNumber());
-
-        return response;
-    }
-
-    public void setPrescription(Long userId, List<String> medicines, String diagnoses, Date nextAppointmentDate){
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        Optional<Prescription> prescription = prescriptionRepository.findTopByUserOrderByIdDesc(user);
-        if (prescription.isEmpty()){
-            throw new RuntimeException("No Prescription found for this user.");
-        }
-
-        Prescription prescription1 = prescription.get();
-        prescription1.setMedicines(medicines);
-        prescription1.setDiagnoses(diagnoses);
-        prescription1.setNextAppointmentDate(nextAppointmentDate);
-        prescriptionRepository.save(prescription1);
+    public DoctorProfile getProfile(Long doctorId){
+        // Try to find the profile
+        return doctorProfileRepository.findById(doctorId)
+                .orElseGet(() -> {
+                    Doctor doctor = doctorRepository.findById(doctorId)
+                            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Doctor account not found"));
+                    
+                    DoctorProfile tempProfile = new DoctorProfile();
+                    tempProfile.setFullName(doctor.getUserName()); // Pre-fill name
+                    tempProfile.setMobileNumber(""); // Empty default
+                    return tempProfile;
+                });
     }
 }

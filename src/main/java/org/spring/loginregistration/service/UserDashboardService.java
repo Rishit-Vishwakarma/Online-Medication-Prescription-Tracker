@@ -32,41 +32,35 @@ public class UserDashboardService {
         UserDashboardResponse response = new UserDashboardResponse();
         Optional<User> optionalUser = userRepository.findById(UserId);
 
-
         if(optionalUser.isEmpty()){
             throw new RuntimeException("User not found.");
         }
-            User user = optionalUser.get();
-            Doctor doctor = user.getDoctor();
+        User user = optionalUser.get();
+        Doctor doctor = user.getDoctor();
 
-            if (doctor == null){
-                throw new RuntimeException("No Doctor Exist for this patient.");
-            }
-            Optional<DoctorProfile> optionalDoctor = doctorProfileRepository.findById(doctor.getDoctorId());
-            if (optionalDoctor.isEmpty()){
-                throw new RuntimeException("Doctor not found.");
-            }
+        if (doctor == null){
+            throw new RuntimeException("No Doctor Exist for this patient.");
+        }
+        Optional<DoctorProfile> optionalDoctor = doctorProfileRepository.findById(doctor.getDoctorId());
+        if (optionalDoctor.isEmpty()){
+            throw new RuntimeException("Doctor profile not found.");
+        }
         Optional<Prescription> optionalPrescription = prescriptionRepository.
                 findTopByUserOrderByIdDesc(user);
-            if (optionalPrescription.isEmpty()){
-                throw new RuntimeException("Prescription not found.");
-            }
+        if (optionalPrescription.isEmpty()){
+            throw new RuntimeException("Prescription not found.");
+        }
 
-            DoctorProfile doctorProfile = optionalDoctor.get();
-            Prescription prescription = optionalPrescription.get();
+        DoctorProfile doctorProfile = optionalDoctor.get();
+        Prescription prescription = optionalPrescription.get();
 
-
-            response.setUsername(user.getUsername());
-            response.setDoctorDegree(doctorProfile.getDegree());
-            response.setSpecialization(doctorProfile.getSpecialization());
-            response.setDoctorPhoneNumber(doctorProfile.getPhoneNumber());
-            response.setAppointmentDate(prescription.getNextAppointmentDate());
-            response.setDiagnosis(prescription.getDiagnoses());
-            response.setMedicines(prescription.getMedicines());
-            return response;
-
-
-
-
+        response.setUsername(user.getUsername());
+        response.setDoctorDegree(doctorProfile.getDegreeName()); // Fixed
+        response.setSpecialization(doctorProfile.getSpecialization());
+        response.setDoctorPhoneNumber(doctorProfile.getMobileNumber()); // Fixed
+        response.setAppointmentDate(prescription.getNextAppointmentDate());
+        response.setDiagnosis(prescription.getDiagnoses());
+        response.setMedicines(prescription.getMedicines());
+        return response;
     }
 }

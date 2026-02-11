@@ -26,5 +26,4 @@ public class Appointment {
     private LocalDate appointmentDate;
     private LocalTime appointmentTime;
     private String reason;
-    private String status; // PENDING, CONFIRMED, CANCELLED, COMPLETED
-}
+    private String status; }

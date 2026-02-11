@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Getter
@@ -14,11 +14,13 @@ public class Prescription {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @ElementCollection
     private List<String> medicines;
+
     private String diagnoses;
-    private Date nextAppointmentDate;
-    private String Note;
+    private LocalDate nextAppointmentDate;
+    private String note;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

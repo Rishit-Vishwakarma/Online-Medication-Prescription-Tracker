@@ -1,14 +1,14 @@
 package org.spring.loginregistration.service;
 
-import org.spring.loginregistration.model.DoctorProfile;
+import org.spring.loginregistration.model.Doctor;
 import org.spring.loginregistration.model.Prescription;
 import org.spring.loginregistration.model.User;
-import org.spring.loginregistration.repository.DoctorProfileRepository;
+import org.spring.loginregistration.repository.DoctorRepository;
 import org.spring.loginregistration.repository.PrescriptionRepository;
 import org.spring.loginregistration.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -16,27 +16,35 @@ public class PrescriptionService {
 
     private final PrescriptionRepository prescriptionRepository;
     private final UserRepository userRepository;
-    private final DoctorProfileRepository doctorProfileRepository;
+    private final DoctorRepository doctorRepository;
 
-    public PrescriptionService(PrescriptionRepository prescriptionRepository, UserRepository userRepository, DoctorProfileRepository doctorProfileRepository) {
+    public PrescriptionService(PrescriptionRepository prescriptionRepository, UserRepository userRepository, DoctorRepository doctorRepository) {
         this.prescriptionRepository = prescriptionRepository;
         this.userRepository = userRepository;
-        this.doctorProfileRepository = doctorProfileRepository;
+        this.doctorRepository = doctorRepository;
     }
 
+    public Prescription savePrescription(Long doctorId, Long patientId, List<String> medicines, String diagnoses, String note, LocalDate nextDate) {
+        Doctor doctor = doctorRepository.findById(doctorId)
+                .orElseThrow(() -> new RuntimeException("Doctor not found"));
+        
+        User user = userRepository.findById(patientId)
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
 
-    public void addPrescription(List<String> medicines, String diagnoses, Date nextAppointmentDate, Long userId, Long doctorId, String notes) {
         Prescription prescription = new Prescription();
-
+        prescription.setDoctor(doctor);
+        prescription.setUser(user);
         prescription.setMedicines(medicines);
         prescription.setDiagnoses(diagnoses);
-        prescription.setNote(notes);
-        prescription.setNextAppointmentDate(nextAppointmentDate);
-        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found."));
-        DoctorProfile doctorProfile = doctorProfileRepository.findById(doctorId).orElseThrow(() -> new RuntimeException("Doctor not found."));
-        prescription.setUser(user);
-//        prescription.setDoctorProfile(doctorProfile);
+        prescription.setNote(note);
+        prescription.setNextAppointmentDate(nextDate);
 
-        prescriptionRepository.save(prescription);
+        return prescriptionRepository.save(prescription);
+    }
+
+    public List<Prescription> getPrescriptionsForPatient(Long patientId) {
+        User user = userRepository.findById(patientId)
+                .orElseThrow(() -> new RuntimeException("Patient not found"));
+        return prescriptionRepository.findByUserOrderByIdDesc(user); // Updated to latest-first
     }
 }

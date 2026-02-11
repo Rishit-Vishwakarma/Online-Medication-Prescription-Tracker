@@ -1,39 +1,30 @@
 package org.spring.loginregistration.controller;
 
-import org.spring.loginregistration.dto.DoctorProfileResponse;
+import org.spring.loginregistration.model.DoctorProfile;
 import org.spring.loginregistration.service.DoctorProfileService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-
 @RestController
+@RequestMapping("/doctor/profile")
 public class DoctorProfileController {
 
     private final DoctorProfileService doctorProfileService;
-    public DoctorProfileController(DoctorProfileService doctorProfileService){
+
+    public DoctorProfileController(DoctorProfileService doctorProfileService) {
         this.doctorProfileService = doctorProfileService;
     }
 
-    @PostMapping("/doctor/SetProfile")
-    public ResponseEntity<String> setDoctorInfo(@RequestParam String degree, @RequestParam String specialization, @RequestParam String phoneNumber, Authentication authentication){
-        Long doctorId = (Long)authentication.getPrincipal();
-        doctorProfileService.setDoctorInfo( doctorId, degree, specialization, phoneNumber);
-        return ResponseEntity.ok("Doctor Info saved successfully. ");
-    }
-
-    @GetMapping("/doctor/GetProfile")
-    public ResponseEntity<DoctorProfileResponse> getDoctorInfo(Authentication authentication){
+    @PostMapping
+    public ResponseEntity<DoctorProfile> saveProfile(Authentication authentication, @RequestBody DoctorProfile profile) {
         Long doctorId = (Long) authentication.getPrincipal();
-        return ResponseEntity.ok(doctorProfileService.getDoctorInfo(doctorId));
+        return ResponseEntity.ok(doctorProfileService.saveOrUpdateProfile(doctorId, profile));
     }
 
-    @PutMapping("doctor/prescription")
-    public ResponseEntity<String> editPriscription(@RequestParam List<String> medicines, @RequestParam String diagnoses, @RequestParam Date nextAppointmentDate, Authentication authentication){
-        Long userId = (Long) authentication.getPrincipal();
-        doctorProfileService.setPrescription( userId, medicines, diagnoses, nextAppointmentDate);
-        return ResponseEntity.ok("Prescription updated successfully");
+    @GetMapping
+    public ResponseEntity<DoctorProfile> getProfile(Authentication authentication) {
+        Long doctorId = (Long) authentication.getPrincipal();
+        return ResponseEntity.ok(doctorProfileService.getProfile(doctorId));
     }
 }

@@ -32,4 +32,21 @@ public class PharmacyController {
         
         return ResponseEntity.ok(pharmacyService.placeOrder(userId, medicines, address, total));
     }
+
+    @GetMapping("/my-orders")
+    public ResponseEntity<List<PharmacyOrder>> getMyOrders(Authentication authentication) {
+        Long userId = (Long) authentication.getPrincipal();
+        return ResponseEntity.ok(pharmacyService.getMyOrders(userId));
+    }
+
+    // Admin Endpoints
+    @GetMapping("/admin/all-orders")
+    public ResponseEntity<List<PharmacyOrder>> getAllOrders() {
+        return ResponseEntity.ok(pharmacyService.getAllOrders());
+    }
+
+    @PutMapping("/admin/order/{id}/status")
+    public ResponseEntity<PharmacyOrder> updateStatus(@PathVariable Long id, @RequestBody Map<String, String> request) {
+        return ResponseEntity.ok(pharmacyService.updateOrderStatus(id, request.get("status")));
+    }
 }

@@ -11,4 +11,5 @@ public interface UserDoctorMappingRepository extends JpaRepository<UserDoctorMap
     boolean existsByUser(User user);
     List<UserDoctorMapping>findByDoctor(Doctor doctor);
     List<UserDoctorMapping>findByUser(User user);
+    boolean existsByUserAndDoctor(User user, Doctor doctor);
 }

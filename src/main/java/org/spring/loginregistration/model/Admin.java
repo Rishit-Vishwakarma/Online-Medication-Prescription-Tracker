@@ -12,17 +12,16 @@ import java.util.List;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long adminId;
+    private Long adminId;
 
-    String userName;
-    String email;
-    String password;
+    private String userName;
+    private String email;
+    private String password;
+
+    @OneToMany(mappedBy = "admin")
+    private List<User> users;
 
     @OneToMany
     @JoinColumn(name = "admin_id")
-    private List<Doctor> doctor;
-
-    @OneToMany
-    @JoinColumn(name = "user_Id")
-    private List<User> user;
+    private List<Doctor> doctors;
 }

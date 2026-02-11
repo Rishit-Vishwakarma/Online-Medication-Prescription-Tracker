@@ -12,10 +12,11 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    private static final String SECRET_KEY = "VGhpc0lzQVNlY3JldEtleVRoYXRJc0xvbmdFbm91Z2hGb3JIUzI1Ng==";
+    // Using a plain string that is long enough for HS256 (32+ characters)
+    private static final String SECRET_STRING = "my-super-secret-key-12345-secure-and-long-enough-for-hs256";
 
     private Key getSigningKey(){
-        return Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
+        return Keys.hmacShaKeyFor(SECRET_STRING.getBytes());
     }
 
     public String generateToken(Long userId, String role){
